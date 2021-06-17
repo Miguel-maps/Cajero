@@ -161,7 +161,7 @@ public class Cajero {
 
     }
 
-    public static void retirarFondos(Usuario usuario, Scanner scan  ) {
+    public static void retirarFondos(Usuario usuario, Scanner scan) {
         int desdeCuenta;
         double cantidad;
         double balanceCuenta;
@@ -177,6 +177,8 @@ public class Cajero {
             }
 
         } while (desdeCuenta < 0 || desdeCuenta >= usuario.getCuentas());
+        
+        balanceCuenta = usuario.getBalanceCuenta(desdeCuenta);
 
         // Elegir cantidad a transferir
         do {
@@ -188,16 +190,53 @@ public class Cajero {
                 System.out.printf("La cantidad debe ser menor que $%.02f\n", balanceCuenta);
             }
         } while (cantidad < 0 || cantidad > balanceCuenta);
-        
+
         scan.nextLine();
-        
+
         System.out.println("Escriba un comentario sobre esta transacción:");
         notaInfo = scan.nextLine();
-        
+
         // Retiro de fondos
-        usuario.addTransaccion(desdeCuenta, -1*cantidad, notaInfo);
+        usuario.addTransaccion(desdeCuenta, -1 * cantidad, notaInfo);
     }
-    
-    
+
+    public static void ingresarFondos(Usuario usuario, Scanner scan) {
+        int aCuenta;
+        double cantidad;
+        double balanceCuenta;
+        String notaInfo;
+
+        // Elegir cuenta emisora
+        do {
+            System.out.printf("Introduzca el número (1-%d) de la cuenta emisora:");
+            aCuenta = scan.nextInt() - 1;
+
+            if (aCuenta < 0 || aCuenta >= usuario.getCuentas()) {
+                System.out.println("Esta cuenta no existe. Inténtelo de nuevo.");
+            }
+
+        } while (aCuenta < 0 || aCuenta >= usuario.getCuentas());
+        
+        balanceCuenta = usuario.getBalanceCuenta(aCuenta);
+
+        // Elegir cantidad a transferir
+        do {
+            System.out.printf("Introduzca la cantidad a transferir (max $%.02f): $", balanceCuenta);
+            cantidad = scan.nextDouble();
+            if (cantidad < 0) {
+                System.out.println("La cantidad debe ser mayor que cero");
+            } else if (cantidad > balanceCuenta) {
+                System.out.printf("La cantidad debe ser menor que $%.02f\n", balanceCuenta);
+            }
+        } while (cantidad < 0 || cantidad > balanceCuenta);
+
+        scan.nextLine();
+
+        System.out.println("Escriba un comentario sobre esta transacción:");
+        notaInfo = scan.nextLine();
+
+        // Retiro de fondos
+        usuario.addTransaccion(aCuenta, cantidad, notaInfo);
+    }
 
 }
