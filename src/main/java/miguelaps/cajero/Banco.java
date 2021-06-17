@@ -14,4 +14,8 @@ public class Banco {
     private ArrayList<Usuario> usuarios;
     private ArrayList<Cuenta> cuentas;
     
+    public String getNuevaIdUser() {
+        return "";
+    }
+    
 }
