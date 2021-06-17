@@ -46,7 +46,7 @@ public class Usuario {
     public String getID() {
         return uniqueID;
     }
-    
+
     public String getNombre() {
         return this.nombre;
     }
@@ -62,21 +62,33 @@ public class Usuario {
         }
         return false;
     }
-    
+
     public void imprimirResumenCuentas() {
         System.out.printf("\n\nResumen de la cuenta de %s ", this.nombre);
         for (int i = 0; i < this.cuentas.size(); i++) {
-            System.out.printf("%d) %s\n", i+1, this.cuentas.get(i).getResumen());
+            System.out.printf("%d) %s\n", i + 1, this.cuentas.get(i).getResumen());
         }
         System.out.println("");
     }
-    
+
     public int getCuentas() {
         return this.cuentas.size();
     }
-    
+
     public void imprimirHistorialTransaccionesCuenta(int indexCuenta) {
         this.cuentas.get(indexCuenta).imprimirHistorialTransacciones();
+    }
+
+    public double getBalanceCuenta(int indexCuenta) {
+        return this.cuentas.get(indexCuenta).getBalance();
+    }
+    
+    public String getIdCuenta(int indexCuenta) {
+        return this.cuentas.get(indexCuenta).getID();
+    }
+    
+    public void addTransaccion(int indexCuenta, double cantidad, String notaInfo) {
+        this.cuentas.get(indexCuenta).addTransaccion(cantidad, notaInfo);
     }
 
 }

@@ -54,5 +54,12 @@ public class Cuenta {
         }
         System.out.println();
     }
+    
+    public void addTransaccion (double cantidad, String notaInfo) {
+        
+        Transaccion nuevaTransaccion = new Transaccion(cantidad, notaInfo, this);
+        this.transacciones.add(nuevaTransaccion);
+        
+    }
 
 }

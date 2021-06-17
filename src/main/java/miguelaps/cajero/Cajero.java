@@ -35,9 +35,9 @@ public class Cajero {
         do {
 
             System.out.printf("\n\nBienvenido a %s\n\n", banco.getNombre());
-            System.out.print("Introduce ID del usuario: ");
+            System.out.println("Introduce ID del usuario: ");
             usuarioID = scan.nextLine();
-            System.out.printf("Introduce el pin: ");
+            System.out.println("Introduce el pin: ");
             pin = scan.nextLine();
 
             // Comprobar que el ID y el pin coincidan
@@ -87,29 +87,78 @@ public class Cajero {
                 Cajero.transferirDinero(usuario, scan);
                 break;
         }
-        
+
         // Volver a mostrar el menú principal salvo que el usuario quiera salir.
         if (elegir != 5) {
             Cajero.imprimirMenuUsuario(usuario, scan);
         }
     }
-    
+
     // Mostrar historial de transacciones de la cuenta de un usuario
     public static void mostrarHistorialTransacciones(Usuario usuario, Scanner scan) {
         int cuenta;
-        
+
         // Encontrar la cuenta que se está buscando
         do {
             System.out.printf("Introduce el número (1-%d) de la cuenta"
                     + " cuyas transacciones quieras consultar.",
                     usuario.getCuentas());
-            cuenta = scan.nextInt()-1;
+            cuenta = scan.nextInt() - 1;
             if (cuenta < 0 || cuenta >= usuario.getCuentas()) {
                 System.out.println("Esta cuenta no existe. Inténtelo de nuevo.");
             }
-            
-        } while(cuenta < 0 || cuenta >= usuario.getCuentas());
+
+        } while (cuenta < 0 || cuenta >= usuario.getCuentas());
         usuario.imprimirHistorialTransaccionesCuenta(cuenta);
     }
-    
+
+    public static void transferirDinero(Usuario usuario, Scanner scan) {
+        int desdeCuenta;
+        int aCuenta;
+        double cantidad;
+        double balanceCuenta;
+
+        // Transferencia desde la cuenta emisora
+        do {
+            System.out.printf("Introduzca el número (1-%d) de la cuenta emisora:");
+            desdeCuenta = scan.nextInt() - 1;
+
+            if (desdeCuenta < 0 || desdeCuenta >= usuario.getCuentas()) {
+                System.out.println("Esta cuenta no existe. Inténtelo de nuevo.");
+            }
+
+        } while (desdeCuenta < 0 || desdeCuenta >= usuario.getCuentas());
+
+        balanceCuenta = usuario.getBalanceCuenta(desdeCuenta);
+
+        // Cuenta que va a recibir la transferencia
+        do {
+            System.out.printf("Introduzca el número (1-%d) de la cuenta receptora:");
+            aCuenta = scan.nextInt() - 1;
+
+            if (aCuenta < 0 || aCuenta >= usuario.getCuentas()) {
+                System.out.println("Esta cuenta no existe. Inténtelo de nuevo.");
+            }
+
+        } while (aCuenta < 0 || aCuenta >= usuario.getCuentas());
+
+        // Elegir cantidad a transferir
+        do {
+            System.out.printf("Introduzca la cantidad a transferir (max $%.02f): $", balanceCuenta);
+            cantidad = scan.nextDouble();
+            if (cantidad < 0) {
+                System.out.println("La cantidad debe ser mayor que cero");
+            } else if (cantidad > balanceCuenta) {
+                System.out.printf("La cantidad debe ser menor que $%.02f\n", balanceCuenta);
+            }
+        } while (cantidad < 0 || cantidad > balanceCuenta);
+
+        // Realizar la transferencia
+        usuario.addTransaccion(desdeCuenta, -1 * cantidad,
+                String.format("Transferir a cuenta %s", usuario.getIdCuenta(aCuenta)));
+        usuario.addTransaccion(aCuenta, cantidad,
+                String.format("Transferir a cuenta %s", usuario.getIdCuenta(desdeCuenta)));
+
+    }
+        
 }
