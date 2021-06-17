@@ -21,11 +21,7 @@ public class Cuenta {
         this.uniqueID = banco.getNuevaIdCuenta();
         
         this.transacciones = new ArrayList<Transaccion>();
-        
-        // Añadir la cuenta a las ArrayList del usuario y el banco en el momento en que se crean
-        propietario.addCuenta(this);
-        banco.addCuenta(this);
-        
+                
     }
     
     public String getID() {

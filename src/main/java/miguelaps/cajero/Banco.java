@@ -71,8 +71,29 @@ public class Banco {
         return id;
     }
 
-    public void addCuenta(Cuenta cuenta) {
-        this.cuentas.add(cuenta);
+    public Usuario addUsuario(String nombre, String apellidos, String pin) {
+        
+        // Crear usuario y añadirlo a la lista de usuarios del banco
+        Usuario nuevoUsuario = new Usuario(nombre, apellidos, pin, this);
+        this.usuarios.add(nuevoUsuario);
+        
+        // Crear una cuenta de ahorros para el usuario y añadirla tanto
+        // al usuario como a la lista de cuentas del banco
+        Cuenta nuevaCuenta = new Cuenta("Ahorros", nuevoUsuario, this);
+        nuevoUsuario.addCuenta(nuevaCuenta);
+        this.cuentas.add(nuevaCuenta);
+        
+        return nuevoUsuario;
+    }
+    
+    public Usuario userLogin(String usuarioID, String pin) {
+        for (Usuario u : this.usuarios) {
+            if (u.getID().compareTo(usuarioID) == 0 && u.validarPin(pin)) {
+                return u;
+            }
+        }
+        // Si no encontramos al usuario o si el pin es incorrecto
+        return null;
     }
 
 }
