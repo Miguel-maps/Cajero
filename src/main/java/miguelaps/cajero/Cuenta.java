@@ -18,7 +18,7 @@ public class Cuenta {
         this.propietario = propietario;
 
         // Crear un nuevo ID único para la cuenta
-        this.uniqueID = banco.getNuevaIdBanco();
+        this.uniqueID = banco.getNuevaIdCuenta();
         
         this.transacciones = new ArrayList<Transaccion>();
         
@@ -26,6 +26,10 @@ public class Cuenta {
         propietario.addCuenta(this);
         banco.addCuenta(this);
         
+    }
+    
+    public String getID() {
+        return this.uniqueID;
     }
 
 }

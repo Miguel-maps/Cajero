@@ -44,4 +44,8 @@ public class Usuario {
         this.cuentas.add(cuenta);
     }
     
+    public String getID() {
+        return uniqueID;
+    }
+    
 }
