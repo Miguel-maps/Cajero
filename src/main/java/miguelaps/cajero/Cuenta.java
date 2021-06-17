@@ -27,5 +27,24 @@ public class Cuenta {
     public String getID() {
         return this.uniqueID;
     }
+    
+    public String getResumen() {
+        double balance = this.getBalance();
+        
+        // Hacer formato del resumen si el balance es negativo
+        if (balance >= 0) {
+            return String.format("%s : $%.02f : %s", this.uniqueID, balance, this.nombre);
+        } else {
+            return String.format("%s : $(%.02f) : %s", this.uniqueID, balance, this.nombre);
+        }
+    }
+    
+    public double getBalance() {
+        double balance = 0;
+        for (Transaccion t : this.transacciones) {
+            balance += t.getCantidad();
+        }
+        return balance;
+    }
 
 }

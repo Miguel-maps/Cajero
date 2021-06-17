@@ -62,5 +62,13 @@ public class Usuario {
         }
         return false;
     }
+    
+    public void imprimirResumenCuentas() {
+        System.out.printf("\n\nResumen de la cuenta de %s ", this.nombre);
+        for (int i = 0; this.cuentas.size(); i++) {
+            System.out.printf("%d) %s\n", this.cuentas.get(i).getResumen());
+        }
+        System.out.println("");
+    }
 
 }

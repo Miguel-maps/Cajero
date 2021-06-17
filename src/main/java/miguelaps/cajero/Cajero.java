@@ -22,7 +22,7 @@ public class Cajero {
         Usuario usuarioActual;
         while (true) {
             usuarioActual = Cajero.menuPrincipal(banco, scan);
-            Cajero.imprimirMenuUsuario(banco, scan);
+            Cajero.imprimirMenuUsuario(usuario, scan);
         }
 
     }
@@ -93,5 +93,5 @@ public class Cajero {
             Cajero.imprimirMenuUsuario(usuario, scan);
         }
     }
-
+    
 }

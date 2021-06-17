@@ -27,4 +27,8 @@ public class Transaccion {
        this.notaInfo = notaInfo;
     }
     
+    public double getCantidad() {
+        return this.cantidad;
+    }
+    
 }
