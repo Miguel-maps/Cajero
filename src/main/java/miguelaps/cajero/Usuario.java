@@ -40,4 +40,8 @@ public class Usuario {
         System.out.printf("Nuevo usuario %s, %s con ID %s creado.\n", apellidos, nombre, this.uniqueID);
     }
     
+    public void addCuenta(Cuenta cuenta) {
+        this.cuentas.add(cuenta);
+    }
+    
 }
