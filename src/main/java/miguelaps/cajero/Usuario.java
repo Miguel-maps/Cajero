@@ -65,10 +65,18 @@ public class Usuario {
     
     public void imprimirResumenCuentas() {
         System.out.printf("\n\nResumen de la cuenta de %s ", this.nombre);
-        for (int i = 0; this.cuentas.size(); i++) {
-            System.out.printf("%d) %s\n", this.cuentas.get(i).getResumen());
+        for (int i = 0; i < this.cuentas.size(); i++) {
+            System.out.printf("%d) %s\n", i+1, this.cuentas.get(i).getResumen());
         }
         System.out.println("");
+    }
+    
+    public int getCuentas() {
+        return this.cuentas.size();
+    }
+    
+    public void imprimirHistorialTransaccionesCuenta(int indexCuenta) {
+        this.cuentas.get(indexCuenta).imprimirHistorialTransacciones();
     }
 
 }

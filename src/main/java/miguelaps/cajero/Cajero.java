@@ -94,4 +94,22 @@ public class Cajero {
         }
     }
     
+    // Mostrar historial de transacciones de la cuenta de un usuario
+    public static void mostrarHistorialTransacciones(Usuario usuario, Scanner scan) {
+        int cuenta;
+        
+        // Encontrar la cuenta que se está buscando
+        do {
+            System.out.printf("Introduce el número (1-%d) de la cuenta"
+                    + " cuyas transacciones quieras consultar.",
+                    usuario.getCuentas());
+            cuenta = scan.nextInt()-1;
+            if (cuenta < 0 || cuenta >= usuario.getCuentas()) {
+                System.out.println("Esta cuenta no existe. Inténtelo de nuevo.");
+            }
+            
+        } while(cuenta < 0 || cuenta >= usuario.getCuentas());
+        usuario.imprimirHistorialTransaccionesCuenta(cuenta);
+    }
+    
 }

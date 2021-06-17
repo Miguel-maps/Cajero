@@ -46,5 +46,13 @@ public class Cuenta {
         }
         return balance;
     }
+    
+    public void imprimirHistorialTransacciones() {
+        System.out.printf("\nHistorial de transacciones para la cuenta %s\n", this.uniqueID);
+        for (int t = this.transacciones.size() - 1; t >= 0; t--) {
+            System.out.printf(this.transacciones.get(t).getSumario());
+        }
+        System.out.println();
+    }
 
 }
