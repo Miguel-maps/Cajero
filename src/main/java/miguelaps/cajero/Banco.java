@@ -12,6 +12,12 @@ public class Banco {
     private String nombre;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Cuenta> cuentas;
+    
+    public Banco (String nombre) {
+        this.nombre = nombre;
+        this.usuarios = new ArrayList<Usuario>();
+        this.cuentas = new ArrayList<Cuenta>();
+    }
 
     public String getNuevaIdUser() {
         String id;
@@ -94,6 +100,10 @@ public class Banco {
         }
         // Si no encontramos al usuario o si el pin es incorrecto
         return null;
+    }
+    
+    public String getNombre() {
+        return this.nombre;
     }
 
 }
