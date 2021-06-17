@@ -46,6 +46,10 @@ public class Usuario {
     public String getID() {
         return uniqueID;
     }
+    
+    public String getNombre() {
+        return this.nombre;
+    }
 
     public boolean validarPin(String pin) {
         try {
