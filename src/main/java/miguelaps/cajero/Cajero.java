@@ -31,6 +31,8 @@ public class Cajero {
         String usuarioID;
         String pin;
         Usuario authUsuario;
+        
+        System.out.println("(NOTA: EL PIN DEL USUARIO ES 1234)");
 
         do {
 
@@ -126,6 +128,7 @@ public class Cajero {
         do {
             System.out.printf("Introduzca el número (1-%d) de la cuenta emisora:",
                     usuario.getCuentas());
+            System.out.println("");
             desdeCuenta = scan.nextInt() - 1;
 
             if (desdeCuenta < 0 || desdeCuenta >= usuario.getCuentas()) {
@@ -140,6 +143,7 @@ public class Cajero {
         do {
             System.out.printf("Introduzca el número (1-%d) de la cuenta receptora:",
                     usuario.getCuentas());
+            System.out.println("");
             aCuenta = scan.nextInt() - 1;
 
             if (aCuenta < 0 || aCuenta >= usuario.getCuentas()) {
@@ -150,7 +154,8 @@ public class Cajero {
 
         // Elegir cantidad a transferir
         do {
-            System.out.printf("Introduzca la cantidad a transferir (max %.02f €): €", balanceCuenta);
+            System.out.printf("Introduzca la cantidad a transferir (max %.02f €):", balanceCuenta);
+            System.out.println("");
             cantidad = scan.nextDouble();
             if (cantidad < 0) {
                 System.out.println("La cantidad debe ser mayor que cero");
@@ -175,8 +180,10 @@ public class Cajero {
 
         // Elegir cuenta emisora
         do {
-            System.out.printf("Introduzca el número (1-%d) de la cuenta emisora:",
+            System.out.printf("Introduzca el número (1-%d) de la cuenta que va a"
+                    + " retirar los fondos:",
                     usuario.getCuentas());
+            System.out.println("");
             desdeCuenta = scan.nextInt() - 1;
 
             if (desdeCuenta < 0 || desdeCuenta >= usuario.getCuentas()) {
@@ -189,7 +196,8 @@ public class Cajero {
 
         // Elegir cantidad a transferir
         do {
-            System.out.printf("Introduzca la cantidad a transferir (max %.02f €): €", balanceCuenta);
+            System.out.printf("Introduzca la cantidad a retirar (max %.02f €): €", balanceCuenta);
+            System.out.println("");
             cantidad = scan.nextDouble();
             if (cantidad < 0) {
                 System.out.println("La cantidad debe ser mayor que cero");
@@ -200,7 +208,7 @@ public class Cajero {
 
         scan.nextLine();
 
-        System.out.print("Escriba un comentario sobre esta transacción:");
+        System.out.println("Escriba un comentario sobre esta transacción:");
         notaInfo = scan.nextLine();
 
         // Retiro de fondos
