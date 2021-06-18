@@ -58,6 +58,7 @@ public class Cajero {
 
         do {
             System.out.printf("Bienvenido %s, ¿Qué quieres hacer?", usuario.getNombre());
+            System.out.println("");
             System.out.println("[1] Mostrar historial de transacciones");
             System.out.println("[2] Retirar fondos");
             System.out.println("[3] Ingresar fondos");
@@ -86,6 +87,8 @@ public class Cajero {
             case 4:
                 Cajero.transferirDinero(usuario, scan);
                 break;
+            case 5:
+                Cajero.salir();
         }
 
         // Volver a mostrar el menú principal salvo que el usuario quiera salir.
@@ -144,12 +147,12 @@ public class Cajero {
 
         // Elegir cantidad a transferir
         do {
-            System.out.printf("Introduzca la cantidad a transferir (max $%.02f): $", balanceCuenta);
+            System.out.printf("Introduzca la cantidad a transferir (max %.02f €): €", balanceCuenta);
             cantidad = scan.nextDouble();
             if (cantidad < 0) {
                 System.out.println("La cantidad debe ser mayor que cero");
             } else if (cantidad > balanceCuenta) {
-                System.out.printf("La cantidad debe ser menor que $%.02f\n", balanceCuenta);
+                System.out.printf("La cantidad debe ser menor que %.02f €\n", balanceCuenta);
             }
         } while (cantidad < 0 || cantidad > balanceCuenta);
 
@@ -177,17 +180,17 @@ public class Cajero {
             }
 
         } while (desdeCuenta < 0 || desdeCuenta >= usuario.getCuentas());
-        
+
         balanceCuenta = usuario.getBalanceCuenta(desdeCuenta);
 
         // Elegir cantidad a transferir
         do {
-            System.out.printf("Introduzca la cantidad a transferir (max $%.02f): $", balanceCuenta);
+            System.out.printf("Introduzca la cantidad a transferir (max %.02f €): €", balanceCuenta);
             cantidad = scan.nextDouble();
             if (cantidad < 0) {
                 System.out.println("La cantidad debe ser mayor que cero");
             } else if (cantidad > balanceCuenta) {
-                System.out.printf("La cantidad debe ser menor que $%.02f\n", balanceCuenta);
+                System.out.printf("La cantidad debe ser menor que %.02f €\n", balanceCuenta);
             }
         } while (cantidad < 0 || cantidad > balanceCuenta);
 
@@ -216,17 +219,17 @@ public class Cajero {
             }
 
         } while (aCuenta < 0 || aCuenta >= usuario.getCuentas());
-        
+
         balanceCuenta = usuario.getBalanceCuenta(aCuenta);
 
         // Elegir cantidad a transferir
         do {
-            System.out.printf("Introduzca la cantidad a transferir (max $%.02f): $", balanceCuenta);
+            System.out.printf("Introduzca la cantidad a transferir (max %.02f): €", balanceCuenta);
             cantidad = scan.nextDouble();
             if (cantidad < 0) {
                 System.out.println("La cantidad debe ser mayor que cero");
             } else if (cantidad > balanceCuenta) {
-                System.out.printf("La cantidad debe ser menor que $%.02f\n", balanceCuenta);
+                System.out.printf("La cantidad debe ser menor que %.02f €\n", balanceCuenta);
             }
         } while (cantidad < 0 || cantidad > balanceCuenta);
 
@@ -237,6 +240,13 @@ public class Cajero {
 
         // Retiro de fondos
         usuario.addTransaccion(aCuenta, cantidad, notaInfo);
+    }
+
+    public static void salir() {
+        System.out.println("");
+        System.out.printf("Gracias por utilizar nuestros servicios. Hasta pronto");
+        System.out.println("");
+        System.exit(0);
     }
 
 }

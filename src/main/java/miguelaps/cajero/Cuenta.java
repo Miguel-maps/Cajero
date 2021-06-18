@@ -33,9 +33,9 @@ public class Cuenta {
         
         // Hacer formato del resumen si el balance es negativo
         if (balance >= 0) {
-            return String.format("%s : $%.02f : %s", this.uniqueID, balance, this.nombre);
+            return String.format("ID cuenta %s : %s : %.02f €", this.uniqueID, this.nombre, balance);
         } else {
-            return String.format("%s : $(%.02f) : %s", this.uniqueID, balance, this.nombre);
+            return String.format("ID cuenta %s : %s : (%.02f) €", this.uniqueID, this.nombre, balance);
         }
     }
     

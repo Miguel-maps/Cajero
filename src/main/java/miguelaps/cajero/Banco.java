@@ -51,7 +51,7 @@ public class Banco {
     public String getNuevaIdCuenta() {
         String id;
         Random rng = new Random();
-        int length = 8;
+        int length = 3;
         boolean noUnico;
 
         // Loopear hasta conseguir un ID único

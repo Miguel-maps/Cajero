@@ -65,6 +65,7 @@ public class Usuario {
 
     public void imprimirResumenCuentas() {
         System.out.printf("\n\nResumen de la cuenta de %s ", this.nombre);
+        System.out.println("");
         for (int i = 0; i < this.cuentas.size(); i++) {
             System.out.printf("%d) %s\n", i + 1, this.cuentas.get(i).getResumen());
         }
