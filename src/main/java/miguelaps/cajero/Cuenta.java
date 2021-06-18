@@ -50,9 +50,9 @@ public class Cuenta {
     public void imprimirHistorialTransacciones() {
         System.out.printf("\nHistorial de transacciones para la cuenta %s\n", this.uniqueID);
         for (int t = this.transacciones.size() - 1; t >= 0; t--) {
-            System.out.printf(this.transacciones.get(t).getSumario());
+            System.out.println(this.transacciones.get(t).getSumario());
         }
-        System.out.println();
+        System.out.println("");
     }
     
     public void addTransaccion (double cantidad, String notaInfo) {

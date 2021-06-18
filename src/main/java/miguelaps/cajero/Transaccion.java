@@ -32,10 +32,10 @@ public class Transaccion {
 
     public String getSumario() {
         if (this.cantidad >= 0) {
-            return String.format("%s : $%0.2f : %s", this.timestamp.toString(),
+            return String.format("%s : %.02f € : %s", this.timestamp.toString(),
                     this.cantidad, this.notaInfo);
         } else {
-            return String.format("%s : $(%0.2f) : %s", this.timestamp.toString(),
+            return String.format("%s : (%.02f €) : %s", this.timestamp.toString(),
                     this.cantidad, this.notaInfo);
         }
     }
